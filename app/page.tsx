@@ -116,6 +116,8 @@ const Home = async ({ searchParams }: HomeProps) => {
 export default Home;
 */
 
+export const dynamic = "force-dynamic"; // Ensures server-side rendering on each request
+
 import Container from "@/app/components/Container";
 import ListingCard from "@/app/components/listings/ListingCard";
 import EmptyState from "@/app/components/EmptyState";
@@ -123,9 +125,7 @@ import getListings, { IListingsParams } from "@/app/actions/getListings";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import ClientOnly from "./components/ClientOnly";
 
-// Server-side logic directly in the component
 const Home = async ({ searchParams }: { searchParams: IListingsParams }) => {
-  // Fetching data server-side within the component
   const listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
